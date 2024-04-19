@@ -17,6 +17,7 @@
 !config/local/.gitkeep
 
 /var/*
+!/var/backups/
 !/var/.gitkeep
 !/var/classes/
 /var/classes/DataObject
