@@ -1,0 +1,21 @@
+pimcore:
+    assets:
+        image:
+            thumbnails:
+                definitions:
+                    product-bruce-lee:
+                        items: {  }
+                        medias: {  }
+                        name: product-bruce-lee
+                        description: ''
+                        group: ''
+                        format: SOURCE
+                        quality: 85
+                        highResolution: null
+                        preserveColor: false
+                        preserveMetaData: false
+                        rasterizeSVG: false
+                        downloadable: false
+                        modificationDate: 1711751076
+                        creationDate: 1711750932
+                        preserveAnimation: false

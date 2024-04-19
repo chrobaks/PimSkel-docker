@@ -1,0 +1,25 @@
+{% block form %}
+<div class="container"
+     data-modal-request="{{ path('product_update', {'id': product.getId()}) }}"
+     data-modal-js="{{ asset('static/js/modalService.js') }}"
+     data-modal-service="ModalService"
+     data-modal-id="product_{{ product.getId() }}">
+    <div class="row">
+        <div class="col">
+            <h4>Update a Product</h4>
+            {{ form_start(form, {'attr': {'class': 'modal-form'}}) }}
+            {{ form_label(form.name) }}
+            <br>
+            {{ form_widget(form.name) }}
+            <br>
+            {{ form_label(form.description) }}
+            <br>
+            {{ form_widget(form.description) }}
+            <br>
+            {{ form_row(form._token) }}
+            {{ form_end(form, {'render_rest': false}) }}
+            <div id="modal-body-msg"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

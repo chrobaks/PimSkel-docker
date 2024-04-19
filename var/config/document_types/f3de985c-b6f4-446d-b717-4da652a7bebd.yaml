@@ -1,0 +1,14 @@
+pimcore:
+    documents:
+        doc_types:
+            definitions:
+                f3de985c-b6f4-446d-b717-4da652a7bebd:
+                    name: ProductType
+                    group: ''
+                    controller: 'App\Controller\ProductController::editAction'
+                    template: null
+                    type: page
+                    priority: 0
+                    creationDate: 1712981249
+                    modificationDate: 1712981344
+                    staticGeneratorEnabled: false

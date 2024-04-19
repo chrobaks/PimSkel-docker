@@ -1,0 +1,51 @@
+{# get root node if there is no document defined (for pages which are routed directly through static route) #}
+{% if not document is defined or not document %}
+    {% set document = pimcore_document(1) %}
+{% endif %}
+
+{# get the document which should be used to start in navigation | default home #}
+{% set navStartNode = document.getProperty('navigationRoot') %}
+{% if not navStartNode is instanceof('\\Pimcore\\Model\\Document\\Page') %}
+    {% set navStartNode = pimcore_document(1) %}
+{% endif %}
+
+{% set mainNavigation = pimcore_build_nav({
+    active: document,
+    maxDepth: 2
+}) %}
+
+{#root: navStartNode,#}
+{% set menuRenderer = pimcore_nav_renderer('menu') %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">PimSkel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            {% for page in mainNavigation %}
+                {# here need to manually check for ACL conditions #}
+                {% if menuRenderer.accept(page)  %}
+                    {% set hasChildren = page.hasPages() %}
+                    {% if not hasChildren %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ page.getHref() }}">{{ page.getLabel() }}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ page.getLabel() }}</a>
+                            <div class="dropdown-menu">
+                                {% for child in page.getPages() %}
+                                    {% if child.isVisible() and menuRenderer.accept(child) %}
+                                        <a class="dropdown-item" href="{{ child.getHref() }}">{{ child.getLabel() }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <title>{{ document.title }}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="{{ asset('static/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('static/css/app.css') }}">
+        <script src="{{ asset('static/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('static/js/appModal.js') }}"></script>
+    </head>
+    <body>
+    {% include 'navigation/main.html.twig'%}
+    <div id="site">
+        {{ block('content') }}
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="modalLabel">Modal Information</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="modalData"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-save">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}{% endblock %}
+        {% if editmode %}
+        {% endif %}
+    </div>
+    </body>
+</html>

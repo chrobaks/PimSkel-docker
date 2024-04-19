@@ -1,0 +1,71 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block content %}
+    {% if editmode %}
+    {#{{ pimcore_relation("product") }}#}
+    {% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Create a Product</h3>
+            {{ form_start(form) }}
+            {{ form_label(form.name) }}
+            <br>
+            {{ form_widget(form.name) }}
+            <br>
+            {{ form_label(form.description) }}
+            <br>
+            {{ form_widget(form.description) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>All Products</h3>
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr data-row-id="product_{{ product.getId() }}">
+                        <td data-form-key="product_name">{{ product.name }}</td>
+                        <td data-form-key="product_description">{{ product.description|raw }}</td>
+                        <td class="text-right">
+                            <button class="btn btn-primary btn-sm product_items product_update" data-product-path="{{ path('product_edit', {'id': product.getId()}) }}">bearbeiten</button>
+                            <button class="btn btn-danger btn-sm product_items product_delete" data-product-id="product_{{ product.getId() }}" data-product-path="{{ path('product_delete', {'id': product.getId()}) }}">löschen</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+    <script>
+        const productItemsList = document.querySelectorAll('.product_items');
+        [...productItemsList].map(item => {
+            if (item.classList.contains('product_delete')) {
+                item.addEventListener('click', () => {
+                    const handler = () => {
+                        const rowDelete = document.querySelector('tr[data-row-id="'+item.dataset?.productId+'"]');
+                        if (rowDelete) {
+                            rowDelete.remove();
+                        }
+                    }
+                    AppModal.setModalRequest(item.dataset?.productPath, 'DELETE', handler);
+                });
+            }
+            if (item.classList.contains('product_update')) {
+                item.addEventListener('click', () => {
+                    AppModal.setModalForm(item.dataset?.productPath);
+                });
+            }
+        });
+    </script>
+{% endblock %}
