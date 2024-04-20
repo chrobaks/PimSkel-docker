@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec pimskeleton-php-1 php bin/console cache:clear
+docker exec pimskel-docker-php-1 php bin/console cache:clear

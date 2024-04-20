@@ -1,25 +1,72 @@
 # Pimcore Project Skeleton 
 
-This skeleton should be used by experienced Pimcore developers for starting a new project from the ground up. 
-If you are new to Pimcore, it's better to start with our demo package, listed below 
+### Frameworks
+- Symfony 6
+- Pimcore 11
 
 ## Required
 
-- Composer
-- npm
-- docker
-- docker compose
-- curl
+- **PHP** vers. >= 8.3.0
+- **Composer** vers. >= 2.7.2
+- **npm** vers. >= 6.14.4
+- **docker** vers. >= 24.0.5
+- **docker compose** vers. >= 2.26.1
+- **curl** vers. >= 27.68.0
 
-## Create docker container
+## Create docker container and pimcore app
 ```bash
-# Change into project folder
+# Change into project folder or open in your IDE
 cd ./PimSkel-docker
+
 # Build docker container
-$ docker compose up --build -d
-# Start the docker container
-$ docker compose start
+$ docker compose up -d
+
+# When all docker container startet
+# Install vendor enviroment
+$ docker compose exec php composer install
+
+# Install pimcore
+$ docker compose exec php vendor/bin/pimcore-install
+
 ```
+
+### Create a document 'Products' in pimcore admin
+```bash
+# Open your pimcore admin interface localhost:8087/admin
+$ Documents -> Home -> Add Page -> ProductType
+Title: Products
+key: products
+
+# Change the controller action to indexAction
+$ Documents -> Home -> products -> Seo & Settings -> Controller, Action & Template
+Controller: App\Controller\ProductController::indexAction
+
+Save & Publish
+
+# Open your browser 
+$Url: localhost:8087/products
+
+- Add new product (name,description)
+- Or edit delete products
+```
+
+### Helper
+
+```bash
+# Problem with php extension, 
+# this command shows our php extensions
+$ php --ini
+
+# Check container logs
+$ docker logs [OPTIONS] CONTAINER
+
+# Clear symfony cache
+$ ./cache-clr.sh
+
+# Remove  all stopped docker container and images
+$ ./docker-cleanup.sh
+```
+
 
 ### Prerequisites
 
@@ -28,21 +75,16 @@ $ docker compose start
 * Your user must be allowed to change file permissions (directly or via sudo).
 
 
-4. Install pimcore and initialize the DB
-    `docker compose exec php vendor/bin/pimcore-install`
-    * When asked for admin user and password: Choose freely
-    * This can take a while, up to 20 minutes
-    * If you select to install the SimpleBackendSearchBundle please make sure to add the `pimcore_search_backend_message` to your `.docker/supervisord.conf` file.
 
-5. Run codeception tests:
+### Run codeception tests:
    * `docker compose run --user=root --rm test-php chown -R $(id -u):$(id -g) var/ public/var/`
    * `docker compose run --rm test-php vendor/bin/pimcore-install -n`
    * `docker compose run --rm test-php vendor/bin/codecept run -vv`
 
-6. :heavy_check_mark: DONE - You can now visit your pimcore instance:
-    * The frontend: <http://localhost>
+### heavy_check_mark: DONE - You can now visit your pimcore instance:
+    * The frontend: 
+        <http://localhost:8087>
     * The admin interface, using the credentials you have chosen above:
-      <http://localhost/admin>
+        <http://localhost:8087/admin>
 
-## Other demo/skeleton packages
-- [Pimcore Basic Demo](https://github.com/pimcore/demo)
+
