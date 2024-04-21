@@ -36,7 +36,8 @@ $ docker compose exec php vendor/bin/pimcore-install
 # Import the pimcore database from /var/backups/pimcore.sql
 # !!! Use only if building container the first time !!!
 $ sudo ./dump_import.sh
-
+# Or use absolute path to dump_import.sh
+$ /bin/bash /YOUR_DIRECTORY_PATH/dump_import.sh
 ```
 
 ### Try out
