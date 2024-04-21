@@ -9,6 +9,7 @@ services:
         command: [ mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --innodb-file-per-table=1 ]
         volumes:
             - pimcore-database:/var/lib/mysql
+            # - ./var/backups/pimcore.sql:/docker-entrypoint-db.d/init-db.sql
         environment:
             - MYSQL_ROOT_PASSWORD=ROOT
             - MYSQL_DATABASE=pimcore
@@ -53,6 +54,7 @@ services:
                 condition: service_healthy
         volumes:
             - .:/var/www/html
+        # command: sh -c "composer install"
 
     supervisord:
         user: '1000:1000' # set to your uid:gid
