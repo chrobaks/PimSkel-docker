@@ -27,6 +27,14 @@ $ docker compose exec php composer install
 
 # Install pimcore
 $ docker compose exec php vendor/bin/pimcore-install
+# This will ask you for admin name: pimcore
+# And a admin password: pimcore
+# Allow all Bundles
+# By success you see see this messages
+[OK] Pimcore was successfully installed 
+
+# Import the pimcore database from /var/backups/pimcore.sql
+$ ./dump_import.sh
 
 ```
 
