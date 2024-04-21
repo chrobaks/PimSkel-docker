@@ -34,23 +34,13 @@ $ docker compose exec php vendor/bin/pimcore-install
 [OK] Pimcore was successfully installed 
 
 # Import the pimcore database from /var/backups/pimcore.sql
-$ ./dump_import.sh
+# !!! Use only if building container the first time !!!
+$ sudo ./dump_import.sh
 
 ```
 
-### Create a document 'Products' in pimcore admin
+### Try out
 ```bash
-# Open your pimcore admin interface localhost:8087/admin
-$ Documents -> Home -> Add Page -> ProductType
-Title: Products
-key: products
-
-# Change the controller action to indexAction
-$ Documents -> Home -> products -> Seo & Settings -> Controller, Action & Template
-Controller: App\Controller\ProductController::indexAction
-
-Save & Publish
-
 # Open your browser 
 $Url: localhost:8087/products
 
