@@ -2,4 +2,4 @@
 
 docker cp ./var/backups/pimcore.sql pimskel-docker-db-1:application
 
-docker exec pimskel-docker-db-1 mysql -upimcore -ppimcore pimcore < /application/pimcore.sql
+docker exec pimskel-docker-db-1 mysql -upimcore -ppimcore pimcore < pimcore.sql
