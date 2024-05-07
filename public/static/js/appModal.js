@@ -66,7 +66,7 @@ class AppModal
         const { myModal, modalData } = this.instanceModal();
 
         fetch(url, {
-            method: 'UPDATE',
+            method: 'POST',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest', // Required for Symfony to identify AJAX requests
                 'Content-Type': 'text/html' // Specify content type as html
