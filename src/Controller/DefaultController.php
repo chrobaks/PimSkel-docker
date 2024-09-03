@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
 use Pimcore\Controller\FrontendController;
+use Pimcore\Model\Document;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,9 +19,17 @@ class DefaultController extends FrontendController
     /**
      * @Route("/", name="home")
      */
-    public function defaultAction(Request $request): Response
+    public function defaultAction(Request $request, Document $document): Response
     {
-        return $this->render('default/index.html.twig');
+        // Fetch the teaser image and text from the document
+        $teaserImage = $document->getEditable('teaserImage');
+        $text = $document->getEditable('text');
+
+        return $this->render('default/index.html.twig', [
+            'document' => $document,
+            'teaserImage' => $teaserImage,
+            'teaserText' => $text,
+        ]);
     }
 
     /**

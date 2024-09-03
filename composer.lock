@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9401c9068e0d37f793f211cf8fea6f95",
+    "content-hash": "848d6cc75fe8c30a5fa9ce1be47341fb",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -4093,16 +4093,16 @@
         },
         {
             "name": "pimcore/pimcore",
-            "version": "v11.2.2",
+            "version": "v11.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pimcore/pimcore.git",
-                "reference": "71e2ff092ad5d052f67fc9b8afcdb79d95691ebb"
+                "reference": "8fbf4549354d60a809af7993c81ea4fe3eb8f505"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pimcore/pimcore/zipball/71e2ff092ad5d052f67fc9b8afcdb79d95691ebb",
-                "reference": "71e2ff092ad5d052f67fc9b8afcdb79d95691ebb",
+                "url": "https://api.github.com/repos/pimcore/pimcore/zipball/8fbf4549354d60a809af7993c81ea4fe3eb8f505",
+                "reference": "8fbf4549354d60a809af7993c81ea4fe3eb8f505",
                 "shasum": ""
             },
             "require": {
@@ -4210,7 +4210,8 @@
             "conflict": {
                 "sabre/dav": "4.2.2",
                 "symfony/symfony": "*",
-                "thecodingmachine/safe": "<2.0"
+                "thecodingmachine/safe": "<2.0",
+                "twig/twig": ">=3.9.0"
             },
             "require-dev": {
                 "chrome-php/chrome": "^1.4.0",
@@ -4219,7 +4220,7 @@
                 "composer/composer": "*",
                 "ergebnis/phpstan-rules": "^2.0",
                 "gotenberg/gotenberg-php": "^1.1 || ^2.0",
-                "phpstan/phpstan": "1.10.59",
+                "phpstan/phpstan": "1.10.67",
                 "phpstan/phpstan-symfony": "^1.3.5",
                 "phpunit/phpunit": "^9.3",
                 "symfony/dotenv": "^6.4",
@@ -4298,7 +4299,7 @@
                 "source": "https://github.com/pimcore/pimcore",
                 "wiki": "https://pimcore.com/docs/latest/"
             },
-            "time": "2024-03-25T15:48:07+00:00"
+            "time": "2024-04-23T12:57:12+00:00"
         },
         {
             "name": "presta/sitemap-bundle",

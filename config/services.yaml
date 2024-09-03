@@ -30,6 +30,7 @@ parameters:
     #pimcore_executable_dot: /usr/bin/dot
 
 services:
+    Pimcore\Twig\Extension\PimcoreTwigExtension: ~
     Symfony\Component\Form\FormFactoryInterface: '@form.factory'
     # default configuration for services in *this* file
     _defaults:
